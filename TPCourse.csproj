@@ -61,20 +61,22 @@
     <Compile Include="Table\Column\AddTableColumnDialog.Designer.cs">
       <DependentUpon>AddTableColumnDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Table\Column\ColumnConstants.cs" />
-    <Compile Include="Table\Column\DataTypes\DataType.cs" />
+    <Compile Include="Table\Column\DataTypes\Base\DataType.cs" />
+    <Compile Include="Table\Column\DataTypes\Currency\CurrencyConstants.cs" />
     <Compile Include="Table\Column\DataTypes\Currency\CurrencyFormatUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Table\Column\DataTypes\Currency\CurrencyFormatUserControl.Designer.cs">
       <DependentUpon>CurrencyFormatUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Table\Column\DataTypes\Date\DateConstants.cs" />
     <Compile Include="Table\Column\DataTypes\Date\DateFormatUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Table\Column\DataTypes\Date\DateFormatUserControl.Designer.cs">
       <DependentUpon>DateFormatUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Table\Column\DataTypes\Duration\DurationConstants.cs" />
     <Compile Include="Table\Column\DataTypes\Duration\DurationFormatUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -109,7 +111,7 @@
     <Compile Include="Table\Column\DataTypes\Currency\CurrencyFormat.cs" />
     <Compile Include="Table\Column\DataTypes\Date\DateFormat.cs" />
     <Compile Include="Table\Column\DataTypes\Default\DefaultFormat.cs" />
-    <Compile Include="Table\Column\DataTypes\Format\DataTypeFormat.cs" />
+    <Compile Include="Table\Column\DataTypes\Base\DataTypeFormat.cs" />
     <Compile Include="Table\Column\DataTypes\Duration\DurationFormat.cs" />
     <Compile Include="Table\Column\DataTypes\Number\NumberFormat.cs" />
     <Compile Include="Table\Column\DataTypes\Percent\PercentFormat.cs" />
