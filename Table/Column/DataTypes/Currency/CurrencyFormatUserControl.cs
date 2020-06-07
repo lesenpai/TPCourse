@@ -2,8 +2,9 @@
 using System.Collections.Generic;using System.Windows.Forms;
 using System.Globalization;
 using TPCourse.Table.Column;
+using TPCourse.Table.Column.DataTypes.Currency;
 
-namespace TPCourse.Table.Column.DataTypes.DataTypeFormatUserControls
+namespace TPCourse.Table.Column.DataTypes.Currency
 {
 	public partial class CurrencyFormatUserControl : UserControl, INotifyAnyControlChanged
 	{
@@ -22,7 +23,7 @@ namespace TPCourse.Table.Column.DataTypes.DataTypeFormatUserControls
 
 			var items = new List<string>();
 
-			foreach(var item in ColumnConstants.CurrencyCulture_Sign_Dictionary.Values)
+			foreach(var item in CurrencyConstants.Culture_Sign_Dictionary.Values)
 			{
 				items.Add(item);
 			}

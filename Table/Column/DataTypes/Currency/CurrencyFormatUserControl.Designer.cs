@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace TPCourse.Table.Column.DataTypes.DataTypeFormatUserControls
+namespace TPCourse.Table.Column.DataTypes.Currency
 {
 	partial class CurrencyFormatUserControl : UserControl
 	{

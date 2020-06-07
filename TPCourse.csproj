@@ -62,6 +62,7 @@
       <DependentUpon>AddTableColumnDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Table\Column\DataTypes\Base\DataType.cs" />
+    <Compile Include="Table\Column\DataTypes\Currency\Currency.cs" />
     <Compile Include="Table\Column\DataTypes\Currency\CurrencyConstants.cs" />
     <Compile Include="Table\Column\DataTypes\Currency\CurrencyFormatUserControl.cs">
       <SubType>UserControl</SubType>
@@ -135,6 +136,7 @@
     <Compile Include="TEST\TestForm.Designer.cs">
       <DependentUpon>TestForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Types\NameCodePair.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
