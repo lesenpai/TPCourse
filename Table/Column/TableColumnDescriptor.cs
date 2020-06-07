@@ -1,5 +1,6 @@
 ﻿using System.Globalization;
 using TPCourse.Table.Column.DataTypes;
+using TPCourse.Table.Column.DataTypes.Format;
 
 namespace TPCourse.Table.Column
 {
@@ -10,8 +11,9 @@ namespace TPCourse.Table.Column
 	{
 		public string Name;
 		public DataType DataType;
-		public string Format;
-		public CultureInfo Culture;
+		//public string FormatString;
+		public DataTypeFormat DataTypeFormat;
+		//public CultureInfo Culture;// TOREMOVE
 
 		public int Index;
 
@@ -19,16 +21,17 @@ namespace TPCourse.Table.Column
 		{
 			Name = "";
 			DataType = DataType.Default;
-			Format = "";
-			Culture = CultureInfo.InvariantCulture;
+			FormatString = "";
+			//Culture = CultureInfo.InvariantCulture;
+			DataTypeFormat = new DefaultFormat();
 			Index = -1;
 		}
 
-		public TableColumnDescriptor(string name, DataType dataType, string format, CultureInfo culture, int index)
+		public TableColumnDescriptor(string name, DataType dataType, string formatString, DataTypeFormat dataTypeFormat, int index)
 		{
 			Name = name;
 			DataType = dataType;
-			Format = format;
+			FormatString = format;
 			Culture = culture;
 			Index = index;
 		}

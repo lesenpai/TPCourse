@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Windows.Forms;
 using TPCourse.Table.Column.DataTypes;
 using TPCourse.Table.Column.DataTypes.DataTypeFormatUserControls;
+using TPCourse.Table.Column.DataTypes.Format;
 
 namespace TPCourse.Table.Column
 { 
@@ -15,11 +17,14 @@ namespace TPCourse.Table.Column
 		private readonly Dictionary<string, UserControl> DATA_FORMAT__USER_CONTROL__DICTIONARY;
 		private bool Is_CmBox_ColumnDateType_DataSource_set = false;
 
+		//public DataTypeFormat Format = new DefaultFormat();
+
 		//private User
 
 		public AddTableColumnDialog()
 		{
 			InitializeComponent();
+			FC_Pnl_DataTypeFormatConfiguration.Init(null, FC_Pnl_DataTypeFormatConfiguration_ChildControlChanged);
 
 			var items = new List<string>();
 			DATA_FORMAT__USER_CONTROL__DICTIONARY = new Dictionary<string, UserControl>
@@ -46,10 +51,193 @@ namespace TPCourse.Table.Column
 				CmBox_ColumnDataType.Text,
 				out UserControl userControl);
 			//FC_Pnl_DataTypeFormatConfiguration.Controls.Add(userControl);
-			FC_Pnl_DataTypeFormatConfiguration.Control = (INotifyAnyControlChanged)userControl;
+			//FC_Pnl_DataTypeFormatConfiguration.Control = (INotifyAnyControlChanged)userControl;
 
 			// Результат диалога
 			Result = new Result<TableColumnDescriptor>(new TableColumnDescriptor());
+		}
+
+		/*// задать начальные значения для элементов ввода
+		public void SetUserInput(string columnName, string dataType*//*,*//* )
+		{
+			TableColumnDescriptor d;
+			d.
+		}*/
+
+		public DialogResult ShowDialog(DataTypeFormat format)
+		{
+			SetFormatConfiguration(format);
+
+			return ShowDialog();
+		}
+
+		// VIEW
+		private void SetFormatConfiguration(DataTypeFormat format)
+		{
+			FormatConfigurationPanel panel = FC_Pnl_DataTypeFormatConfiguration;
+
+			void SetLayout (string typeName)
+			{
+				DATA_FORMAT__USER_CONTROL__DICTIONARY.TryGetValue(typeName, out UserControl c);
+				panel.Control = (INotifyAnyControlChanged)c;
+			}
+
+			switch (format)
+			{
+				case NumberFormat n:
+				{
+					SetLayout("Number");
+					var nControl = (NumberFormatUserControl)panel.Control;
+					nControl.NUD_Precision.Value = n.Precision;
+					nControl.RBtn_DigitGroupSeparator.Checked = n.HasSeparator;
+					//panel.Contorl = c; ?
+					break;
+				}
+
+				case PercentFormat p:
+				{
+					SetLayout("Percent");
+					var pControl = (PercentFormatUserControl)panel.Control;
+					pControl.NUD_Precision.Value = p.Precision;
+					break;
+				}
+
+				case CurrencyFormat c:
+				{
+					SetLayout("Currency");
+					var cControl = (CurrencyFormatUserControl)panel.Control;
+					cControl.NUD_Precision.Value = c.Precision;
+					break;
+				}
+
+				case DateFormat d:
+				{
+					SetLayout("Date");
+					var dControl = (DateFormatUserControl)panel.Control;
+					int dayIndex;
+
+					switch (d.Day)
+					{
+						default:
+						case DataTypes.Date.DateDay.Full:
+							dayIndex = 0;
+							break;
+
+						case DataTypes.Date.DateDay.Short:
+							dayIndex = 1;
+							break;
+
+						case DataTypes.Date.DateDay.Number:
+							dayIndex = 2;
+							break;
+					}
+
+					dControl.CmBox_Day.SelectedIndex = dayIndex;
+					int monthIndex;
+
+					switch (d.Month)
+					{
+						default:
+						case DataTypes.Date.DateMonth.Full:
+							monthIndex = 0;
+							break;
+
+						case DataTypes.Date.DateMonth.Short:
+							monthIndex = 1;
+							break;
+
+						case DataTypes.Date.DateMonth.Number:
+							monthIndex = 2;
+							break;
+					}
+
+					dControl.CmBox_Month.SelectedIndex = monthIndex;
+					int yearIndex;
+
+					switch (d.Year)
+					{
+						default:
+						case DataTypes.Date.DateYear.Full:
+							yearIndex = 0;
+							break;
+
+						case DataTypes.Date.DateYear.TwoDigit:
+							yearIndex = 1;
+							break;
+					}
+
+					dControl.CmBox_Year.SelectedIndex = yearIndex;
+					int separatorIndex;
+
+					switch (d.Separator)
+					{
+						default:
+						case DataTypes.Date.DateSeparator.Point:
+							separatorIndex = 0;
+							break;
+
+						case DataTypes.Date.DateSeparator.Slash:
+							separatorIndex = 1;
+							break;
+
+						case DataTypes.Date.DateSeparator.Hyphen:
+							separatorIndex = 2;
+							break;
+
+						case DataTypes.Date.DateSeparator.Space:
+							separatorIndex = 3;
+							break;
+					}
+
+					dControl.CmBox_Separator.SelectedIndex = separatorIndex;
+
+					break;
+				}
+
+				case DurationFormat d:
+				{
+					SetLayout("Duration");
+					var control = (DurationFormatUserControl)panel.Control;
+					int precisionIndex;
+
+					switch(d.Precision)
+					{
+						default:
+						case DataTypes.Duration.DurationPrecision.Millisecond:
+							precisionIndex = 0;
+							break;
+
+						case DataTypes.Duration.DurationPrecision.Second:
+							precisionIndex = 1;
+							break;
+
+						case DataTypes.Duration.DurationPrecision.Minute:
+							precisionIndex = 2;
+							break;
+
+						case DataTypes.Duration.DurationPrecision.Hour:
+							precisionIndex = 3;
+							break;
+					}
+
+					control.CmBox_Precision.SelectedIndex = precisionIndex;
+					int msPrecisionIndex = (int)d.MillisecondPrecision;
+					control.CmBox_MillisecondPrecision.SelectedIndex = msPrecisionIndex;
+
+					break;
+				}
+
+				default:
+				{
+					SetLayout("Default");
+					var control = (DefaultFormatUserControl)panel.Control;
+					//panel.Control = control; ?
+
+					break;
+				}
+			}
+
+			//SetLayout();
 		}
 
 		private void Btn_OK_Click(object sender, EventArgs e)
@@ -62,7 +250,7 @@ namespace TPCourse.Table.Column
 
 			Result.Value.Name = TBox_ColumnName.Text;
 			Result.Value.DataType = (DataType)Enum.Parse(typeof(DataType), CmBox_ColumnDataType.Text);
-			(Result.Value.Format, Result.Value.Culture) = GetDataTypeFormat((UserControl)FC_Pnl_DataTypeFormatConfiguration.Controls[0]);
+			(Result.Value.FormatString, Result.Value.Culture) = GetDataTypeFormat((UserControl)FC_Pnl_DataTypeFormatConfiguration.Control);
 			Result.Success = true;
 
 			Close();
@@ -97,6 +285,7 @@ namespace TPCourse.Table.Column
 
 		private (string, CultureInfo) GetNumberFormat(NumberFormatUserControl c) => GetNumberFormat(c.RBtn_DigitGroupSeparator.Checked, (int)c.NUD_Precision.Value);
 
+		// TOREPLACE BY DataTypeFormat.ToString
 		private (string, CultureInfo) GetNumberFormat(bool bSeparator, int precision)
 		{
 			// N|F[precision]
@@ -119,8 +308,9 @@ namespace TPCourse.Table.Column
 		{
 			// C<precision>, CultureInfo (USD:en-US, RUB:ru-RU, EUR:fr-FR)
 			var formatString = GetCurrencyFormat((int)c.NUD_Precision.Value);
-			c.CURRENCY__CULTURE__DICTIONARY.TryGetValue(c.CmBox_Currency.Text, out CultureInfo culture);
-			return (formatString, culture);
+			c.CURRENCY__CULTURE__DICTIONARY.TryGetValue(c.CmBox_Currency.Text, out string culture);
+
+			return (formatString, CultureInfo.GetCultureInfo(culture));
 		}
 
 		private (string, CultureInfo) GetDateFormat(DateFormatUserControl c)
@@ -144,18 +334,18 @@ namespace TPCourse.Table.Column
 			c.PRECISION_NAME__CODE__DICTIONARY.TryGetValue(c.CmBox_Precision.Text, out string hmsPart);
 
 			return (GetDurationFormat(
-				c.RBtn_ShowDays.Checked,
+				//c.RBtn_ShowDays.Checked,
 				hmsPart,
 				c.CmBox_MillisecondPrecision.Enabled,
 				c.CmBox_MillisecondPrecision.Text),
 				CultureInfo.InvariantCulture);
 		}
 
-		private string GetDurationFormat(bool bDisplayDays, string hmsPart, bool bDisplayMilliseconds, string millisecondPart)
+		private string GetDurationFormat(/*bool bDisplayDays, */string hmsPart, bool bDisplayMilliseconds, string millisecondPart)
 		{
 			// <days>:<hour>:<minute>:<second>:<ms>
-			string format = (bDisplayDays) ? "d\\." : "";
-			format += hmsPart;
+			//string format = (bDisplayDays) ? "d\\." : "";
+			string format = hmsPart;
 			
 			if(bDisplayMilliseconds)
 			{

@@ -2,6 +2,7 @@
 {
 	partial class AddTableColumnDialog
 	{
+		private TPCourse.Table.Column.FormatConfigurationPanel FC_Pnl_DataTypeFormatConfiguration;
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
@@ -34,9 +35,9 @@
 			this.Lbl_ColumnName = new System.Windows.Forms.Label();
 			this.Lbl_ColumnDataType = new System.Windows.Forms.Label();
 			this.CmBox_ColumnDataType = new System.Windows.Forms.ComboBox();
-			this.FC_Pnl_DataTypeFormatConfiguration = new TPCourse.Table.Column.FormatConfigurationPanel(null, FC_Pnl_DataTypeFormatConfiguration_ChildControlChanged);
 			this.Lbl_Sample = new System.Windows.Forms.Label();
 			this.Lbl_SampleValue = new System.Windows.Forms.Label();
+			this.FC_Pnl_DataTypeFormatConfiguration = new TPCourse.Table.Column.FormatConfigurationPanel();
 			this.SuspendLayout();
 			// 
 			// Btn_OK
@@ -65,6 +66,7 @@
 			this.TBox_ColumnName.Name = "TBox_ColumnName";
 			this.TBox_ColumnName.Size = new System.Drawing.Size(180, 20);
 			this.TBox_ColumnName.TabIndex = 2;
+			this.TBox_ColumnName.Text = "Столбец";
 			// 
 			// Lbl_ColumnName
 			// 
@@ -94,14 +96,6 @@
 			this.CmBox_ColumnDataType.TabIndex = 6;
 			this.CmBox_ColumnDataType.SelectedIndexChanged += new System.EventHandler(this.CmBox_ColumnDataType_SelectedIndexChanged);
 			// 
-			// Pnl_DataTypeFormatConfiguration
-			// 
-			this.FC_Pnl_DataTypeFormatConfiguration.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.FC_Pnl_DataTypeFormatConfiguration.Location = new System.Drawing.Point(15, 114);
-			this.FC_Pnl_DataTypeFormatConfiguration.Name = "Pnl_DataTypeFormatConfiguration";
-			this.FC_Pnl_DataTypeFormatConfiguration.Size = new System.Drawing.Size(360, 158);
-			this.FC_Pnl_DataTypeFormatConfiguration.TabIndex = 9;
-			// 
 			// Lbl_Sample
 			// 
 			this.Lbl_Sample.AutoSize = true;
@@ -120,6 +114,15 @@
 			this.Lbl_SampleValue.TabIndex = 11;
 			this.Lbl_SampleValue.Text = "( ... )";
 			// 
+			// FC_Pnl_DataTypeFormatConfiguration
+			// 
+			this.FC_Pnl_DataTypeFormatConfiguration.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.FC_Pnl_DataTypeFormatConfiguration.Control = null;
+			this.FC_Pnl_DataTypeFormatConfiguration.Location = new System.Drawing.Point(15, 106);
+			this.FC_Pnl_DataTypeFormatConfiguration.Name = "FC_Pnl_DataTypeFormatConfiguration";
+			this.FC_Pnl_DataTypeFormatConfiguration.Size = new System.Drawing.Size(365, 167);
+			this.FC_Pnl_DataTypeFormatConfiguration.TabIndex = 12;
+			// 
 			// AddTableColumnDialog
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -127,13 +130,13 @@
 			this.ClientSize = new System.Drawing.Size(392, 335);
 			this.Controls.Add(this.Lbl_SampleValue);
 			this.Controls.Add(this.Lbl_Sample);
-			this.Controls.Add(this.FC_Pnl_DataTypeFormatConfiguration);
 			this.Controls.Add(this.CmBox_ColumnDataType);
 			this.Controls.Add(this.Lbl_ColumnDataType);
 			this.Controls.Add(this.Lbl_ColumnName);
 			this.Controls.Add(this.TBox_ColumnName);
 			this.Controls.Add(this.Btn_Cancel);
 			this.Controls.Add(this.Btn_OK);
+			this.Controls.Add(this.FC_Pnl_DataTypeFormatConfiguration);
 			this.Name = "AddTableColumnDialog";
 			this.Text = "AddTableColumnDialog";
 			this.ResumeLayout(false);
@@ -151,6 +154,7 @@
 		private System.Windows.Forms.ComboBox CmBox_ColumnDataType;
 		private System.Windows.Forms.Label Lbl_Sample;
 		private System.Windows.Forms.Label Lbl_SampleValue;
-		private TPCourse.Table.Column.FormatConfigurationPanel FC_Pnl_DataTypeFormatConfiguration;
+		//private TPCourse.Table.Column.FormatConfigurationPanel FC_Pnl_DataTypeFormatConfiguration;
+		//private System.Windows.Forms.Panel FC_Pnl_DataTypeFormatConfiguration;
 	}
 }

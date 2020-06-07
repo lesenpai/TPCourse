@@ -61,50 +61,64 @@
     <Compile Include="Table\Column\AddTableColumnDialog.Designer.cs">
       <DependentUpon>AddTableColumnDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Table\Column\ColumnConstants.cs" />
     <Compile Include="Table\Column\DataTypes\DataType.cs" />
-    <Compile Include="Table\Column\DataTypes\DataTypeFormatUserControls\CurrencyFormatUserControl.cs">
+    <Compile Include="Table\Column\DataTypes\Currency\CurrencyFormatUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Table\Column\DataTypes\DataTypeFormatUserControls\CurrencyFormatUserControl.Designer.cs">
+    <Compile Include="Table\Column\DataTypes\Currency\CurrencyFormatUserControl.Designer.cs">
       <DependentUpon>CurrencyFormatUserControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Table\Column\DataTypes\DataTypeFormatUserControls\DateFormatUserControl.cs">
+    <Compile Include="Table\Column\DataTypes\Date\DateFormatUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Table\Column\DataTypes\DataTypeFormatUserControls\DateFormatUserControl.Designer.cs">
+    <Compile Include="Table\Column\DataTypes\Date\DateFormatUserControl.Designer.cs">
       <DependentUpon>DateFormatUserControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Table\Column\DataTypes\DataTypeFormatUserControls\DurationFormatUserControl.cs">
+    <Compile Include="Table\Column\DataTypes\Duration\DurationFormatUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Table\Column\DataTypes\DataTypeFormatUserControls\DurationFormatUserControl.Designer.cs">
+    <Compile Include="Table\Column\DataTypes\Duration\DurationFormatUserControl.Designer.cs">
       <DependentUpon>DurationFormatUserControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Table\Column\DataTypes\DataTypeFormatUserControls\PercentFormatUserControl.cs">
+    <Compile Include="Table\Column\DataTypes\Percent\PercentFormatUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Table\Column\DataTypes\DataTypeFormatUserControls\PercentFormatUserControl.Designer.cs">
+    <Compile Include="Table\Column\DataTypes\Percent\PercentFormatUserControl.Designer.cs">
       <DependentUpon>PercentFormatUserControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Table\Column\DataTypes\DataTypeFormatUserControls\NumberFormatUserControl.cs">
+    <Compile Include="Table\Column\DataTypes\Number\NumberFormatUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Table\Column\DataTypes\DataTypeFormatUserControls\NumberFormatUserControl.Designer.cs">
+    <Compile Include="Table\Column\DataTypes\Number\NumberFormatUserControl.Designer.cs">
       <DependentUpon>NumberFormatUserControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Table\Column\DataTypes\DataTypeFormatUserControls\DefaultFormatUserControl.cs">
+    <Compile Include="Table\Column\DataTypes\Default\DefaultFormatUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Table\Column\DataTypes\DataTypeFormatUserControls\DefaultFormatUserControl.Designer.cs">
+    <Compile Include="Table\Column\DataTypes\Default\DefaultFormatUserControl.Designer.cs">
       <DependentUpon>DefaultFormatUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Table\Column\DataTypes\Date\DateSeparator.cs" />
+    <Compile Include="Table\Column\DataTypes\Date\DateYear.cs" />
+    <Compile Include="Table\Column\DataTypes\Date\DateDay.cs" />
+    <Compile Include="Table\Column\DataTypes\Date\DateMonth.cs" />
+    <Compile Include="Table\Column\DataTypes\Duration\DurationMillisecondPrecision.cs" />
+    <Compile Include="Table\Column\DataTypes\Duration\DurationPrecision.cs" />
     <Compile Include="Table\Column\DataTypes\Formatter.cs" />
+    <Compile Include="Table\Column\DataTypes\Currency\CurrencyFormat.cs" />
+    <Compile Include="Table\Column\DataTypes\Date\DateFormat.cs" />
+    <Compile Include="Table\Column\DataTypes\Default\DefaultFormat.cs" />
+    <Compile Include="Table\Column\DataTypes\Format\DataTypeFormat.cs" />
+    <Compile Include="Table\Column\DataTypes\Duration\DurationFormat.cs" />
+    <Compile Include="Table\Column\DataTypes\Number\NumberFormat.cs" />
+    <Compile Include="Table\Column\DataTypes\Percent\PercentFormat.cs" />
     <Compile Include="Table\Column\DataTypes\INotifyControlChanged.cs" />
     <Compile Include="Table\Column\FormatConfigurationPanel.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Table\Column\INotifyChildControlChanged.cs" />
-    <Compile Include="Table\Column\TableColumnProperties.cs" />
+    <Compile Include="Table\Column\TableColumnDescriptor.cs" />
     <Compile Include="Table\TableForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,6 +127,12 @@
     </Compile>
     <Compile Include="Table\TableModel.cs" />
     <Compile Include="Table\TableView.cs" />
+    <Compile Include="TEST\TestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TEST\TestForm.Designer.cs">
+      <DependentUpon>TestForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -128,26 +148,29 @@
     <EmbeddedResource Include="Table\Column\AddTableColumnDialog.resx">
       <DependentUpon>AddTableColumnDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Table\Column\DataTypes\DataTypeFormatUserControls\CurrencyFormatUserControl.resx">
+    <EmbeddedResource Include="Table\Column\DataTypes\Currency\CurrencyFormatUserControl.resx">
       <DependentUpon>CurrencyFormatUserControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Table\Column\DataTypes\DataTypeFormatUserControls\DateFormatUserControl.resx">
+    <EmbeddedResource Include="Table\Column\DataTypes\Date\DateFormatUserControl.resx">
       <DependentUpon>DateFormatUserControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Table\Column\DataTypes\DataTypeFormatUserControls\DurationFormatUserControl.resx">
+    <EmbeddedResource Include="Table\Column\DataTypes\Duration\DurationFormatUserControl.resx">
       <DependentUpon>DurationFormatUserControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Table\Column\DataTypes\DataTypeFormatUserControls\PercentFormatUserControl.resx">
+    <EmbeddedResource Include="Table\Column\DataTypes\Percent\PercentFormatUserControl.resx">
       <DependentUpon>PercentFormatUserControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Table\Column\DataTypes\DataTypeFormatUserControls\NumberFormatUserControl.resx">
+    <EmbeddedResource Include="Table\Column\DataTypes\Number\NumberFormatUserControl.resx">
       <DependentUpon>NumberFormatUserControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Table\Column\DataTypes\DataTypeFormatUserControls\DefaultFormatUserControl.resx">
+    <EmbeddedResource Include="Table\Column\DataTypes\Default\DefaultFormatUserControl.resx">
       <DependentUpon>DefaultFormatUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Table\TableForm.resx">
       <DependentUpon>TableForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TEST\TestForm.resx">
+      <DependentUpon>TestForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

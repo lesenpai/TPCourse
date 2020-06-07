@@ -17,42 +17,17 @@ namespace TPCourse.Table.Column.DataTypes.DataTypeFormatUserControls
 		public void OnAnyControlChanged(object sender, EventArgs e) => AnyControlChanged.Invoke(null, null);
 		/* INofifyAnyControlChanged ; */
 
-		public const string DAYS_FORMAT_PREFIX = "d\\.";
-		// [-][d.]hh:mm:ss[.fffffff]
-		public readonly Dictionary<string, string> PRECISION_NAME__CODE__DICTIONARY = new Dictionary<string, string>
-		{
-			{ "Миллисекунд", "hh\\:mm\\:ss\\.F"}, // 'F' will be replaced 
-			{ "Секунд",      "hh\\:mm\\:ss" },
-			{ "Минут",       "hh\\:mm" },
-			{ "Часов",       "hh" },
-			{ "Дней",        "" }
-		};
-		public readonly Dictionary<string, string> PRECISION_NAME__CODE__DICTIONARY_NO_DAYS;
-		public readonly string[] MILLISECONDS_PRECISIONS = 
-		{ 
-			"fffffff",
-			"ffffff",
-			"fffff",
-			"ffff",
-			"fff",
-			"ff",
-			"f"
-		};
-
 		public DurationFormatUserControl(EventHandler handler)
 		{
 			InitializeComponent();
 
 			AnyControlChanged += handler;
-			RBtn_ShowDays.CheckedChanged                    += OnAnyControlChanged;
 			CmBox_Precision.SelectedIndexChanged            += OnAnyControlChanged;
 			CmBox_MillisecondPrecision.SelectedIndexChanged += OnAnyControlChanged;
 
-			PRECISION_NAME__CODE__DICTIONARY_NO_DAYS = PRECISION_NAME__CODE__DICTIONARY.Where((x) => x.Key != "Дней").ToDictionary(x => x.Key, x => x.Value);
-
-			CmBox_Precision.DataSource = PRECISION_NAME__CODE__DICTIONARY_NO_DAYS.Keys.ToArray();
+			CmBox_Precision.DataSource = ColumnConstants.DurationPrecisionName_Code_Dictionary.Keys.ToArray();
 			CmBox_Precision.SelectedIndex = 1;
-			CmBox_MillisecondPrecision.DataSource = MILLISECONDS_PRECISIONS;
+			CmBox_MillisecondPrecision.DataSource = ColumnConstants.DurationMillisecondsPrecisions;
 		}
 
 		private void SetMillisecondConfigurationState(bool state)
@@ -66,9 +41,9 @@ namespace TPCourse.Table.Column.DataTypes.DataTypeFormatUserControls
 			SetMillisecondConfigurationState(CmBox_Precision.Text == "Миллисекунд");
 		}
 
-		private void RBtn_ShowDays_CheckedChanged(object sender, EventArgs e)
+		/*private void RBtn_ShowDays_CheckedChanged(object sender, EventArgs e)
 		{
 			CmBox_Precision.DataSource = (RBtn_ShowDays.Checked) ? PRECISION_NAME__CODE__DICTIONARY.Keys.ToArray() : PRECISION_NAME__CODE__DICTIONARY_NO_DAYS.Keys.ToArray();
-		}
+		}*/
 	}
 }

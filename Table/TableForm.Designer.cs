@@ -28,9 +28,14 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			this.DGView_Table = new System.Windows.Forms.DataGridView();
 			this.Btn_AddColumn = new System.Windows.Forms.Button();
+			this.CtxMS_ColumnHeader = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.TSMItem_ColumnHeader__EditColumn = new System.Windows.Forms.ToolStripMenuItem();
+			this.TSMItem_ColumnHeader__RemoveColumn = new System.Windows.Forms.ToolStripMenuItem();
 			((System.ComponentModel.ISupportInitialize)(this.DGView_Table)).BeginInit();
+			this.CtxMS_ColumnHeader.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// DGView_Table
@@ -46,6 +51,7 @@
 			this.DGView_Table.TabIndex = 0;
 			this.DGView_Table.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGView_Table_CellEndEdit);
 			this.DGView_Table.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGView_Table_CellValueChanged);
+			this.DGView_Table.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGView_Table_ColumnHeaderMouseClick);
 			// 
 			// Btn_AddColumn
 			// 
@@ -56,6 +62,27 @@
 			this.Btn_AddColumn.Text = "Добавить столбец";
 			this.Btn_AddColumn.UseVisualStyleBackColor = true;
 			this.Btn_AddColumn.Click += new System.EventHandler(this.Btn_AddColumn_Click);
+			// 
+			// CtxMS_ColumnHeader
+			// 
+			this.CtxMS_ColumnHeader.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.TSMItem_ColumnHeader__EditColumn,
+            this.TSMItem_ColumnHeader__RemoveColumn});
+			this.CtxMS_ColumnHeader.Name = "CtxMS_ColumnHeader";
+			this.CtxMS_ColumnHeader.Size = new System.Drawing.Size(129, 48);
+			// 
+			// TSMItem_ColumnHeader__EditColumn
+			// 
+			this.TSMItem_ColumnHeader__EditColumn.Name = "TSMItem_ColumnHeader__EditColumn";
+			this.TSMItem_ColumnHeader__EditColumn.Size = new System.Drawing.Size(128, 22);
+			this.TSMItem_ColumnHeader__EditColumn.Text = "Изменить";
+			this.TSMItem_ColumnHeader__EditColumn.Click += new System.EventHandler(this.TSMItem_ColumnHeader__EditColumn_Click);
+			// 
+			// TSMItem_ColumnHeader__RemoveColumn
+			// 
+			this.TSMItem_ColumnHeader__RemoveColumn.Name = "TSMItem_ColumnHeader__RemoveColumn";
+			this.TSMItem_ColumnHeader__RemoveColumn.Size = new System.Drawing.Size(128, 22);
+			this.TSMItem_ColumnHeader__RemoveColumn.Text = "Удалить";
 			// 
 			// TableForm
 			// 
@@ -68,6 +95,7 @@
 			this.Padding = new System.Windows.Forms.Padding(2);
 			this.Text = "TableForm";
 			((System.ComponentModel.ISupportInitialize)(this.DGView_Table)).EndInit();
+			this.CtxMS_ColumnHeader.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -76,5 +104,8 @@
 
 		public System.Windows.Forms.DataGridView DGView_Table;
 		public System.Windows.Forms.Button Btn_AddColumn;
+		private System.Windows.Forms.ContextMenuStrip CtxMS_ColumnHeader;
+		private System.Windows.Forms.ToolStripMenuItem TSMItem_ColumnHeader__EditColumn;
+		private System.Windows.Forms.ToolStripMenuItem TSMItem_ColumnHeader__RemoveColumn;
 	}
 }

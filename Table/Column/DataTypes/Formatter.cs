@@ -8,17 +8,13 @@ using System.Threading.Tasks;
 namespace TPCourse.Table.Column.DataTypes
 {
 	/*
-		Форматирует строку по типу данных
+		@summary Форматирует строку по типу данных
+
+		@get format string
+		@return formatted string
 		*/
 	public class Formatter
 	{
-		/*Default,
-		Number,
-		Percent,
-		Currency,
-		Date,
-		Duration*/
-
 		private static bool TryFormatDataType<T> (
 			string source, string format, CultureInfo culture, out string result,
 			Func<string, CultureInfo, (bool, T)> parser) 

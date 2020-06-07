@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;using System.Windows.Forms;
 using System.Globalization;
+using TPCourse.Table.Column;
 
 namespace TPCourse.Table.Column.DataTypes.DataTypeFormatUserControls
 {
@@ -8,15 +9,8 @@ namespace TPCourse.Table.Column.DataTypes.DataTypeFormatUserControls
 	{
 		/* INofifyAnyControlChanged */
 		public event EventHandler AnyControlChanged;
-		public void OnAnyControlChanged(object sender, EventArgs e) => AnyControlChanged.Invoke(null, null);	
+		public void OnAnyControlChanged(object sender, EventArgs e) => AnyControlChanged.Invoke(null, null);
 		/* INofifyAnyControlChanged ; */
-
-		public readonly Dictionary<string, CultureInfo> CURRENCY__CULTURE__DICTIONARY = new Dictionary<string, CultureInfo>
-		{
-			{ "$ (USD)", CultureInfo.GetCultureInfo("en-US") },
-			{ "₽ (RUB)", CultureInfo.GetCultureInfo("ru-RU") },
-			{ "€ (EUR)", CultureInfo.GetCultureInfo("fr-FR") }
-		};
 
 		public CurrencyFormatUserControl(EventHandler handler)
 		{
@@ -28,9 +22,9 @@ namespace TPCourse.Table.Column.DataTypes.DataTypeFormatUserControls
 
 			var items = new List<string>();
 
-			foreach (var item in CURRENCY__CULTURE__DICTIONARY.Keys)
+			foreach(var item in ColumnConstants.CurrencyCulture_Sign_Dictionary.Values)
 			{
-				items.Add(item.ToString());
+				items.Add(item);
 			}
 
 			CmBox_Currency.DataSource = items;

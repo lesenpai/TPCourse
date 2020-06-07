@@ -22,10 +22,16 @@ namespace TPCourse.Table
 		}
 
 		// TODO: дать нормальное имя
-		private void AddColumn_(TableColumnDescriptor columnProps)
+		private void AddColumn_(TableColumnDescriptor descriptor)
 		{
-			TableColumnsDescriptors.Add(columnProps);
-			_table.Columns.Add("c" + columnProps.Index, columnProps.Name + '\n' + columnProps.DataType);
+			TableColumnsDescriptors.Add(descriptor);
+			_table.Columns.Add("c" + descriptor.Index, descriptor.Name + '\n' + descriptor.DataType + '\n' + descriptor.FormatString);
+		}
+
+		public void UpdateColumnDescriptor(TableColumnDescriptor descriptor, int columnIndex)
+		{
+			TableColumnsDescriptors[columnIndex] = descriptor;
+			_table.Columns[columnIndex].HeaderText = descriptor.Name + '\n' + descriptor.DataType + '\n' + descriptor.FormatString;
 		}
 
 		public void AddColumn(TableColumnDescriptor columnProps)
@@ -34,12 +40,12 @@ namespace TPCourse.Table
 			AddColumn_(columnProps);
 		}
 
-		public /*bool*/void TryParseCellValue(Point coord)
+		/*public *//*bool*//*void TryParseCellValue(Point coord)
 		{
 			string value = (string)_table.Rows[coord.X].Cells[coord.Y].Value;
 			var dataType = TableColumnsDescriptors.ElementAt(coord.X).DataType;
 			
-			/*switch(dataType)
+			*//*switch(dataType)
 			{
 				case TableColumnDataType.Number:
 					//datatypeparser.tryNumber(value, format)
@@ -64,7 +70,7 @@ namespace TPCourse.Table
 				case TableColumnDataType.Time:
 					//..parser.date
 					break;
-			}*/
-		}
+			}*//*
+		}*/
 	}
 }
