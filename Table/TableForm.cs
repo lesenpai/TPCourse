@@ -1,6 +1,7 @@
 ﻿using System.Windows.Forms;
 using System.Drawing;
 using TPCourse.Table.Column;
+using TPCourse.Table.Column.DataTypes;
 
 namespace TPCourse.Table
 {
@@ -44,9 +45,18 @@ namespace TPCourse.Table
 			*/
 		private void DGView_Table_CellEndEdit(object sender, DataGridViewCellEventArgs e)
 		{
-			var coord = new Point(e.ColumnIndex, e.RowIndex);
-			
-			//if _model.TryParseDataType(coord);
+			var cell = DGView_Table.Rows[e.RowIndex].Cells[e.ColumnIndex];
+			TableColumnDescriptor columnDescriptor = _model.TableColumnsDescriptors[e.ColumnIndex];
+
+			// DateType.Duration: prepare
+			/*
+				 getMajorPartType
+			*/
+
+			if (Formatter.TryFormat((string)cell.Value, columnDescriptor.DataType, columnDescriptor.Format, columnDescriptor.Culture, out string formatted))
+			{
+				cell.Value = formatted;
+			}
 		}
 	}
 }

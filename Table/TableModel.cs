@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
+using System.Windows.Forms;
 using TPCourse.Table.Column;
 
 namespace TPCourse.Table
@@ -13,7 +10,7 @@ namespace TPCourse.Table
 	{
 		private readonly TableForm _form;
 		private readonly DataGridView _table;
-		private readonly List<TableColumnProperties> _tableColumnsProperties = new List<TableColumnProperties>();
+		public readonly List<TableColumnDescriptor> TableColumnsDescriptors = new List<TableColumnDescriptor>();
 
 		public TableModel(TableForm form)
 		{
@@ -25,22 +22,22 @@ namespace TPCourse.Table
 		}
 
 		// TODO: дать нормальное имя
-		private void AddColumn_(TableColumnProperties columnProps)
+		private void AddColumn_(TableColumnDescriptor columnProps)
 		{
-			_tableColumnsProperties.Add(columnProps);
+			TableColumnsDescriptors.Add(columnProps);
 			_table.Columns.Add("c" + columnProps.Index, columnProps.Name + '\n' + columnProps.DataType);
 		}
 
-		public void AddColumn(TableColumnProperties columnProps)
+		public void AddColumn(TableColumnDescriptor columnProps)
 		{
-			columnProps.Index = _tableColumnsProperties.Max(p => p.Index) + 1;
+			columnProps.Index = (TableColumnsDescriptors.Count > 0) ? TableColumnsDescriptors.Max(p => p.Index) + 1 : 0;
 			AddColumn_(columnProps);
 		}
 
 		public /*bool*/void TryParseCellValue(Point coord)
 		{
 			string value = (string)_table.Rows[coord.X].Cells[coord.Y].Value;
-			var dataType = _tableColumnsProperties.ElementAt(coord.X).DataType;
+			var dataType = TableColumnsDescriptors.ElementAt(coord.X).DataType;
 			
 			/*switch(dataType)
 			{

@@ -62,12 +62,48 @@
       <DependentUpon>AddTableColumnDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Table\Column\DataTypes\DataType.cs" />
+    <Compile Include="Table\Column\DataTypes\DataTypeFormatUserControls\CurrencyFormatUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Table\Column\DataTypes\DataTypeFormatUserControls\CurrencyFormatUserControl.Designer.cs">
+      <DependentUpon>CurrencyFormatUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\Column\DataTypes\DataTypeFormatUserControls\DateFormatUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Table\Column\DataTypes\DataTypeFormatUserControls\DateFormatUserControl.Designer.cs">
+      <DependentUpon>DateFormatUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\Column\DataTypes\DataTypeFormatUserControls\DurationFormatUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Table\Column\DataTypes\DataTypeFormatUserControls\DurationFormatUserControl.Designer.cs">
+      <DependentUpon>DurationFormatUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\Column\DataTypes\DataTypeFormatUserControls\PercentFormatUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Table\Column\DataTypes\DataTypeFormatUserControls\PercentFormatUserControl.Designer.cs">
+      <DependentUpon>PercentFormatUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\Column\DataTypes\DataTypeFormatUserControls\NumberFormatUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Table\Column\DataTypes\DataTypeFormatUserControls\NumberFormatUserControl.Designer.cs">
+      <DependentUpon>NumberFormatUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Table\Column\DataTypes\DataTypeFormatUserControls\DefaultFormatUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Table\Column\DataTypes\DataTypeFormatUserControls\DefaultFormatUserControl.Designer.cs">
       <DependentUpon>DefaultFormatUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Table\Column\DataTypes\Formatter.cs" />
+    <Compile Include="Table\Column\DataTypes\INotifyControlChanged.cs" />
+    <Compile Include="Table\Column\FormatConfigurationPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Table\Column\INotifyChildControlChanged.cs" />
     <Compile Include="Table\Column\TableColumnProperties.cs" />
     <Compile Include="Table\TableForm.cs">
       <SubType>Form</SubType>
@@ -91,6 +127,21 @@
     </Compile>
     <EmbeddedResource Include="Table\Column\AddTableColumnDialog.resx">
       <DependentUpon>AddTableColumnDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Table\Column\DataTypes\DataTypeFormatUserControls\CurrencyFormatUserControl.resx">
+      <DependentUpon>CurrencyFormatUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Table\Column\DataTypes\DataTypeFormatUserControls\DateFormatUserControl.resx">
+      <DependentUpon>DateFormatUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Table\Column\DataTypes\DataTypeFormatUserControls\DurationFormatUserControl.resx">
+      <DependentUpon>DurationFormatUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Table\Column\DataTypes\DataTypeFormatUserControls\PercentFormatUserControl.resx">
+      <DependentUpon>PercentFormatUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Table\Column\DataTypes\DataTypeFormatUserControls\NumberFormatUserControl.resx">
+      <DependentUpon>NumberFormatUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Table\Column\DataTypes\DataTypeFormatUserControls\DefaultFormatUserControl.resx">
       <DependentUpon>DefaultFormatUserControl.cs</DependentUpon>

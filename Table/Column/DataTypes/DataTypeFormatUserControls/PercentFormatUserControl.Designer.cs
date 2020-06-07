@@ -2,7 +2,7 @@
 
 namespace TPCourse.Table.Column.DataTypes.DataTypeFormatUserControls
 {
-	partial class DefaultFormatUserControl : UserControl
+	partial class PercentFormatUserControl : UserControl
 	{
 		/// <summary> 
 		/// Обязательная переменная конструктора.
@@ -30,25 +30,36 @@ namespace TPCourse.Table.Column.DataTypes.DataTypeFormatUserControls
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.Lbl_Capture = new System.Windows.Forms.Label();
+			this.NUD_Precision = new System.Windows.Forms.NumericUpDown();
+			this.Lbl_Precision = new System.Windows.Forms.Label();
+			((System.ComponentModel.ISupportInitialize)(this.NUD_Precision)).BeginInit();
 			this.SuspendLayout();
 			// 
-			// Lbl_Capture
+			// NUD_Precision
 			// 
-			this.Lbl_Capture.AutoSize = true;
-			this.Lbl_Capture.Location = new System.Drawing.Point(4, 4);
-			this.Lbl_Capture.Name = "Lbl_Capture";
-			this.Lbl_Capture.Size = new System.Drawing.Size(112, 13);
-			this.Lbl_Capture.TabIndex = 0;
-			this.Lbl_Capture.Text = "Строка без формата";
+			this.NUD_Precision.Location = new System.Drawing.Point(181, 19);
+			this.NUD_Precision.Name = "NUD_Precision";
+			this.NUD_Precision.Size = new System.Drawing.Size(54, 20);
+			this.NUD_Precision.TabIndex = 5;
 			// 
-			// DefaultFormatUserControl
+			// Lbl_Precision
+			// 
+			this.Lbl_Precision.AutoSize = true;
+			this.Lbl_Precision.Location = new System.Drawing.Point(3, 21);
+			this.Lbl_Precision.Name = "Lbl_Precision";
+			this.Lbl_Precision.Size = new System.Drawing.Size(172, 13);
+			this.Lbl_Precision.TabIndex = 4;
+			this.Lbl_Precision.Text = "Количество цифр после запятой";
+			// 
+			// PercentFormatUserControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.Controls.Add(this.Lbl_Capture);
-			this.Name = "DefaultFormatUserControl";
-			this.Size = new System.Drawing.Size(185, 41);
+			this.Controls.Add(this.NUD_Precision);
+			this.Controls.Add(this.Lbl_Precision);
+			this.Name = "PercentFormatUserControl";
+			this.Size = new System.Drawing.Size(279, 62);
+			((System.ComponentModel.ISupportInitialize)(this.NUD_Precision)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -56,6 +67,7 @@ namespace TPCourse.Table.Column.DataTypes.DataTypeFormatUserControls
 
 		#endregion
 
-		private Label Lbl_Capture;
+		public NumericUpDown NUD_Precision;
+		private Label Lbl_Precision;
 	}
 }

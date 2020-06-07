@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TPCourse.Table.Column.DataTypes
+﻿namespace TPCourse.Table.Column.DataTypes
 {
 	public enum DataType
 	{
@@ -13,7 +7,6 @@ namespace TPCourse.Table.Column.DataTypes
 		Percent,
 		Currency,
 		Date,
-		//Time,
 		Duration
 	}
 }
