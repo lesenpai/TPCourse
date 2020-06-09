@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using TPCourse.Source.Table.Column;
-using TPCourse.Source.Types;
 using TPCourse.Table;
 
 namespace TPCourse.Source.Table
@@ -31,7 +30,12 @@ namespace TPCourse.Source.Table
 
 			List<List<string>> rows = new List<List<string>>();
 
-			foreach(DataGridViewRow row in form.DGView_Table.Rows)
+			if (form.DGView_Table.Rows.Count > 0)
+			{
+				//form.DGView_Table.Rows.RemoveAt(form.DGView_Table.Rows.Count - 1); // игнорирование пустой строки в конце
+			}
+
+			foreach (DataGridViewRow row in form.DGView_Table.Rows)
 			{
 				List<string> cells = new List<string>();
 

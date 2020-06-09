@@ -148,12 +148,6 @@
     </Compile>
     <Compile Include="Source\Table\TableModel.cs" />
     <Compile Include="Source\Table\TableView.cs" />
-    <Compile Include="Source\TEST\TestForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Source\TEST\TestForm.Designer.cs">
-      <DependentUpon>TestForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Source\Types\DialogForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -197,9 +191,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Source\Table\TableForm.resx">
       <DependentUpon>TableForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Source\TEST\TestForm.resx">
-      <DependentUpon>TestForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\Types\AddTableDialog.resx">
       <DependentUpon>AddTableDialog.cs</DependentUpon>

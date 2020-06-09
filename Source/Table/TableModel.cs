@@ -48,11 +48,6 @@ namespace TPCourse.Table
 				string oldValue = _table.Rows[i].Cells[columnIndex].Value as string;
 				string culture = descriptor.Format.Culture;
 
-				if(culture == "")
-				{
-					culture = ColumnConstants.DefaultCulture;
-				}
-
 				_table.Rows[i].Cells[columnIndex].Value = Formatter.TryFormat(
 					oldValue,
 					descriptor.DataType,

@@ -21,6 +21,18 @@ namespace TPCourse.Source
 			TableDatas = new List<TableData>();
 		}
 
+		public void Set(ProjectData data)
+		{
+			// Model
+			TableDatas = data.TableDatas;
+
+			// View
+			foreach(TableData tableData in TableDatas)
+			{
+				_view.AddTableButton(tableData.Descriptor.Name);
+			}
+		}
+
 		public void AddNewTable()
 		{
 			var dialog = new AddTableDialog();
@@ -28,15 +40,20 @@ namespace TPCourse.Source
 			dialog.ShowDialog();
 			var result = dialog.Result;
 
-			if(result.Success) // TODO: добавить кнопку таблицы (внизу)
+			if(result.Success)
 			{
 				var tableForm = new TableForm();
-				tableForm.Init(result.Value, _form.TableForm_FormClosed);
+				tableForm.Init(
+					result.Value,
+					_form.TableForm_FormClosed,
+					_form.TableForm_ModelChanged);
 				tableForm.MdiParent = _form;
 
 				TableDatas.Add(TableData.Get(tableForm));
 
 				_view.AddTableButton(result.Value.Name);
+
+				_form.IsFileSaved = false;
 
 				tableForm.Show();
 			}
@@ -48,7 +65,10 @@ namespace TPCourse.Source
 		public void AddExistingTable(TableData tableData)
 		{
 			TableForm tableForm = new TableForm();
-			tableForm.Init(tableData, _form.TableForm_FormClosed);
+			tableForm.Init(
+				tableData,
+				_form.TableForm_FormClosed,
+				_form.TableForm_ModelChanged);
 			tableForm.MdiParent = _form;
 
 			tableForm.Show();
@@ -57,7 +77,12 @@ namespace TPCourse.Source
 		public void UpdateTableData(TableData tableData)
 		{
 			var index = TableDatas.FindIndex(x => x.Descriptor.Name == tableData.Descriptor.Name);
-			tableData.Rows.RemoveAt(tableData.Rows.Count - 1);
+			
+			if(tableData.Rows.Count > 0)
+			{
+				tableData.Rows.RemoveAt(tableData.Rows.Count - 1); // игнорирование пустой строки в кноце
+			}
+			
 			TableDatas[index] = tableData;
 		}
 
@@ -101,6 +126,8 @@ namespace TPCourse.Source
 			// from model
 			index = TableDatas.FindIndex(x => x.Descriptor.Name == tableName);
 			TableDatas.RemoveAt(index);
+
+			_form.IsFileSaved = false;
 		}
 	}
 }

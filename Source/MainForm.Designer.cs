@@ -69,21 +69,21 @@
 			// TSMI_Menu_File_Open
 			// 
 			this.TSMI_Menu_File_Open.Name = "TSMI_Menu_File_Open";
-			this.TSMI_Menu_File_Open.Size = new System.Drawing.Size(180, 22);
+			this.TSMI_Menu_File_Open.Size = new System.Drawing.Size(155, 22);
 			this.TSMI_Menu_File_Open.Text = "Открыть";
 			this.TSMI_Menu_File_Open.Click += new System.EventHandler(this.TSMI_Menu_File_Open_Click);
 			// 
 			// TSMI_Menu_File_Save
 			// 
 			this.TSMI_Menu_File_Save.Name = "TSMI_Menu_File_Save";
-			this.TSMI_Menu_File_Save.Size = new System.Drawing.Size(180, 22);
+			this.TSMI_Menu_File_Save.Size = new System.Drawing.Size(155, 22);
 			this.TSMI_Menu_File_Save.Text = "Сохранить";
 			this.TSMI_Menu_File_Save.Click += new System.EventHandler(this.TSMI_Menu_File_Save_Click);
 			// 
 			// TSMI_Menu_File_SaveAs
 			// 
 			this.TSMI_Menu_File_SaveAs.Name = "TSMI_Menu_File_SaveAs";
-			this.TSMI_Menu_File_SaveAs.Size = new System.Drawing.Size(180, 22);
+			this.TSMI_Menu_File_SaveAs.Size = new System.Drawing.Size(155, 22);
 			this.TSMI_Menu_File_SaveAs.Text = "Сохнанить Как";
 			this.TSMI_Menu_File_SaveAs.Click += new System.EventHandler(this.TSMI_Menu_File_SaveAs_Click);
 			// 
@@ -159,6 +159,7 @@
 			this.MainMenuStrip = this.MS_Menu;
 			this.Name = "MainForm";
 			this.Text = "Main Window";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
 			this.MS_Menu.ResumeLayout(false);
 			this.MS_Menu.PerformLayout();
 			this.CtxMS_TableBtnX.ResumeLayout(false);

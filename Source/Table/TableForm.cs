@@ -11,6 +11,10 @@ namespace TPCourse.Table
 {
 	public partial class TableForm : Form
 	{
+		public event EventHandler ModelChanged;
+
+		public void OnModelChanged() => ModelChanged.Invoke(null, null);
+
 		public TableModel Model;
 		//public TableView _view;
 
@@ -21,25 +25,32 @@ namespace TPCourse.Table
 		{
 			InitializeComponent();
 			Model = new TableModel(this);
-			//_view = new TableView(this);
 		}
 
-		public void Init(TableDescriptor desc, FormClosedEventHandler closedHandler)
+		/*
+			@param propertyChangedHandler: обработчик события изменения модели данных
+			*/
+		public void Init(TableDescriptor desc, FormClosedEventHandler closedHandler, EventHandler modelChangedHandler)
 		{
 			Text = desc.Name; // unique
 			FormClosed += closedHandler;
+			ModelChanged += modelChangedHandler;
 		}
 
-		public void Init(TableData tableData, FormClosedEventHandler closedHandler)
+		public void Init(TableData tableData, FormClosedEventHandler closedHandler, EventHandler modelChangedHandler)
 		{
-			Init(tableData.Descriptor, closedHandler);
+			Init(tableData.Descriptor, closedHandler, modelChangedHandler);
 
 			var columnDescriptors = tableData.ColumnDescriptors;
 			Model.ColumnDescriptors = columnDescriptors;
 
 			foreach(var desc in columnDescriptors)
 			{
-				DGView_Table.Columns.Add("", desc.Name);
+				DGView_Table.Columns.Add(
+					desc.Name, 
+					desc.Name + "\n"
+					+ desc.DataType + "\n"
+					+ desc.Format.ToString());
 			}
 
 			List<List<string>> rows = tableData.Rows;
@@ -59,6 +70,7 @@ namespace TPCourse.Table
 
 			if(result.Success)
 			{
+				OnModelChanged();
 				Model.AddColumn(result.Value);
 			}
 		}
@@ -80,6 +92,8 @@ namespace TPCourse.Table
 			{
 				cell.Value = formatted;
 			}
+
+			OnModelChanged();
 		}
 
 		/*
@@ -96,8 +110,8 @@ namespace TPCourse.Table
 
 			if(result.Success)
 			{
+				OnModelChanged();
 				Model.UpdateColumnDescriptor(result.Value, CtxMenuColumnIndex);
-
 				Model.UpdateColumnCells(result.Value, CtxMenuColumnIndex);
 			}
 		}
@@ -119,6 +133,7 @@ namespace TPCourse.Table
 			*/
 		private void TSMItem_ColumnHeader__RemoveColumn_Click(object sender, EventArgs e)
 		{
+			OnModelChanged();
 			DGView_Table.Columns.RemoveAt(CtxMenuColumnIndex);
 			Model.ColumnDescriptors.RemoveAt(CtxMenuColumnIndex);
 		}

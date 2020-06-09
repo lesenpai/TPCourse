@@ -35,6 +35,8 @@ namespace TPCourse.Source
 
 			SetText(DEFAULT_FILE_NAME);
 
+			FileName = DEFAULT_FILE_NAME;
+
 			IsFileOpen = false;
 			IsFileSaved = true;
 		}
@@ -52,6 +54,11 @@ namespace TPCourse.Source
 			Model.AddNewTable();
 		}
 
+		public void TableForm_ModelChanged(object sender, EventArgs e)
+		{
+			IsFileSaved = false;
+		}
+
 		/*
 			Обработка MouseUp по кнопку, ассоциируемой с таблицей (TableButton)
 			*/
@@ -62,7 +69,8 @@ namespace TPCourse.Source
 
 			tableForm.Init(
 				Model.TableDatas.Where(i => i.Descriptor.Name == button.Text).ElementAt(0),
-				TableForm_FormClosed);
+				TableForm_FormClosed,
+				TableForm_ModelChanged);
 
 			switch (e.Button)
 			{
@@ -122,6 +130,8 @@ namespace TPCourse.Source
 			if(result.Success)
 			{
 				Model.RenameTable(oldName, result.Value.Name);
+
+				IsFileSaved = false;
 			}
 		}
 
@@ -153,10 +163,6 @@ namespace TPCourse.Source
 			*/
 		private void TSMI_Menu_File_Save_Click(object sender, EventArgs e)
 		{
-			/*Save
-				if isFileOpen:
-					writeToFile(this.fileName)
-					isFileSaved = true*/
 			if(IsFileOpen)
 			{
 				WriteToFile(FileName);
@@ -188,6 +194,7 @@ namespace TPCourse.Source
 		{
 			try
 			{
+				FLPanel_Tables.Controls.Clear();
 				ProjectData data;
 
 				using(var reader = File.OpenText(OFDialog.FileName))
@@ -196,7 +203,12 @@ namespace TPCourse.Source
 					data = (ProjectData)serializer.Deserialize(reader);
 				}
 
-				//Model.Set(data);
+				Model.Set(data);
+
+				FileName = OFDialog.FileName;
+
+				IsFileOpen = true;
+				IsFileSaved = true;
 			}
 			catch(Exception ex)
 			{
@@ -211,9 +223,10 @@ namespace TPCourse.Source
 		/*
 			Файл -> Открыть
 			*/
-			private void TSMI_Menu_File_Open_Click(object sender, EventArgs e)
+		private void TSMI_Menu_File_Open_Click(object sender, EventArgs e)
 		{
-			if(IsFileOpen)
+			// если файл не сохранен
+			if(!IsFileSaved)
 			{
 				var askSaveFileDialogResult = MessageBox.Show(
 					$"Сохранить изменения в файле \"{FileName}\"?",
@@ -238,38 +251,86 @@ namespace TPCourse.Source
 
 						if(openDialogResult == DialogResult.OK)
 						{
-
+							ReadFile(OFDialog.FileName);
 						}
 
 						break;
+					}
+
+					case DialogResult.No:
+					{
+						var openDialogResult = OFDialog.ShowDialog();
+
+						if (openDialogResult == DialogResult.OK)
+						{
+							ReadFile(OFDialog.FileName);
+						}
+
+						break;
+					}
+
+					case DialogResult.Cancel:
+					{
+						return;
 					}
 				}
 			}
 			else
 			{
+				var openDialogResult = OFDialog.ShowDialog();
 
+				if(openDialogResult == DialogResult.OK)
+				{
+					foreach(var form in MdiChildren)
+					{
+						form.Close();
+					}
+
+					ReadFile(OFDialog.FileName);
+				}
 			}
-			/*Open
-				if isFileOpen:
-					switch askSaveFileDialog():
-						case Yes:
-							writeToFile()
-							isFileSaved = true
-							if openFileDialog.OK:
-								readFile()
-								isFileOpen = true
-								isFileSaved = true
+		}
 
-						case No:
-							break
+		/*
+			Обработка закрытия формы пользователем.
+			*/
+		private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			// если файл не сохранен
+			if (!IsFileSaved)
+			{
+				var askSaveFileDialogResult = MessageBox.Show(
+					$"Сохранить изменения в файле \"{FileName}\"?",
+					APP_NAME,
+					MessageBoxButtons.YesNoCancel,
+					MessageBoxIcon.Question);
 
-						case Cancel:
-							return
-				else:
-					if openFileDialog().OK
-						readFile()
-								isFileOpen = true
-								isFileSaved = true*/
+				switch (askSaveFileDialogResult)
+				{
+					case DialogResult.Yes:
+					{
+						var safeDialogResult = SFDialog.ShowDialog();
+
+						if (safeDialogResult == DialogResult.OK)
+						{
+							WriteToFile(SFDialog.FileName);
+						}
+						else
+						{
+							e.Cancel = true;
+						}
+
+						break;
+					}
+
+					case DialogResult.Cancel:
+					{
+						e.Cancel = true;
+
+						break;
+					}
+				}
+			}
 		}
 	}
 }
