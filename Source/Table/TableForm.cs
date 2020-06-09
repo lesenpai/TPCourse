@@ -5,6 +5,7 @@ using TPCourse.Source.Types;
 using TPCourse.Source.Table.Column;
 using TPCourse.Source.Table.Column.DataTypes;
 using TPCourse.Source.Table;
+using System.Globalization;
 
 namespace TPCourse.Table
 {
@@ -74,7 +75,7 @@ namespace TPCourse.Table
 				(string)cell.Value, 
 				columnDescriptor.DataType, 
 				columnDescriptor.Format.ToString(),
-				columnDescriptor.Format.Culture, 
+				CultureInfo.GetCultureInfo(columnDescriptor.Format.Culture), 
 				out string formatted))
 			{
 				cell.Value = formatted;
@@ -88,8 +89,6 @@ namespace TPCourse.Table
 		private void TSMItem_ColumnHeader__EditColumn_Click(object sender, EventArgs e)
 		{
 			var dialog = new AddColumnDialog();
-			/*DataTypeFormat format = Model.ColumnDescriptors[CtxMenuColumnIndex].Format;
-			dialog.ShowDialog(format);*/
 			ColumnDescriptor descriptor = Model.ColumnDescriptors[CtxMenuColumnIndex];
 			dialog.ShowDialog(descriptor);
 
@@ -98,6 +97,8 @@ namespace TPCourse.Table
 			if(result.Success)
 			{
 				Model.UpdateColumnDescriptor(result.Value, CtxMenuColumnIndex);
+
+				Model.UpdateColumnCells(result.Value, CtxMenuColumnIndex);
 			}
 		}
 

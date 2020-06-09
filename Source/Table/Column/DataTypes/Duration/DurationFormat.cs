@@ -9,7 +9,7 @@ namespace TPCourse.Source.Table.Column.DataTypes.Duration
 		public DurationPrecision Precision;
 		public DurationMillisecondPrecision MillisecondPrecision;
 
-		public DurationFormat(DurationPrecision precision, DurationMillisecondPrecision millisecondPrecision, CultureInfo culture)
+		public DurationFormat(DurationPrecision precision, DurationMillisecondPrecision millisecondPrecision, string culture)
 			: base(culture)
 		{
 			Precision = precision;

@@ -48,14 +48,14 @@ namespace TPCourse.Source.Table.Column.DataTypes
 			}
 		}
 
-		public static (bool, double) TryParseNumber(string source, CultureInfo culture)
+		private static (bool, double) TryParseNumber(string source, CultureInfo culture)
 		{
 			var styles = NumberStyles.Number;
 			return (double.TryParse(source, styles, culture, out double result), result);
 		}
 
 		// <double><" "><%>
-		public static (bool, double) TryParsePercent(string source, CultureInfo culture)
+		private static (bool, double) TryParsePercent(string source, CultureInfo culture)
 		{
 			// {" "}<double>" "%{" "}
 			source = source.Trim(); // <double>" "%
@@ -72,18 +72,18 @@ namespace TPCourse.Source.Table.Column.DataTypes
 			}
 		}
 
-		public static (bool, double) TryParseCurrency(string source, CultureInfo culture)
+		private static (bool, double) TryParseCurrency(string source, CultureInfo culture)
 		{
 			var styles = NumberStyles.Currency;
 			return (double.TryParse(source, styles, culture, out double result), result);
 		}
 
-		public static (bool, DateTime) TryParseDate(string source, CultureInfo culture)
+		private static (bool, DateTime) TryParseDate(string source, CultureInfo culture)
 		{
 			return (DateTime.TryParse(source, out DateTime result), result);
 		}
 
-		public static (bool, TimeSpan) TryParseDuration(string source, CultureInfo culture)
+		private static (bool, TimeSpan) TryParseDuration(string source, CultureInfo culture)
 		{
 			return (TimeSpan.TryParse(source, out TimeSpan result), result);
 		}

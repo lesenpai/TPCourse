@@ -7,7 +7,7 @@ namespace TPCourse.Source.Table.Column.DataTypes.Currency
 	{
 		public int Precision;
 
-		public CurrencyFormat(int presicion, CultureInfo culture)
+		public CurrencyFormat(int presicion, string culture)
 			: base(culture)
 		{
 			Precision = presicion;

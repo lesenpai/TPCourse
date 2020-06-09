@@ -33,6 +33,12 @@ namespace TPCourse.Source.Table
 			_mainView = mainView;
 		}
 
+		public void Init(MainModel mainModel, MainView mainView, string tableName)
+		{
+			Init(mainModel, mainView);
+			TB_TableName.Text = tableName;
+		}
+
 		private void Btn_OK_Click(object sender, EventArgs e)
 		{
 			var validation = ValidateTableName(TB_TableName.Text);

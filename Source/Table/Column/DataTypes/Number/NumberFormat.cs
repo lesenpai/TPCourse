@@ -8,7 +8,7 @@ namespace TPCourse.Source.Table.Column.DataTypes.Number
 		public int Precision;
 		public bool HasSeparator;
 
-		public NumberFormat(int presicion, bool bSeparator, CultureInfo culture)
+		public NumberFormat(int presicion, bool bSeparator, string culture)
 			: base(culture)
 		{
 			Precision = presicion;

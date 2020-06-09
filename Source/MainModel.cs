@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Forms;
 using TPCourse.Source.Table;
+using TPCourse.Source.Types;
 using TPCourse.Table;
 
 namespace TPCourse.Source
@@ -51,19 +54,53 @@ namespace TPCourse.Source
 			tableForm.Show();
 		}
 
-		/*// Обработка закрытия окна таблицы.
-		public void TableForm_FormClosed(object sender, EventArgs e)
-		{
-			// сохранить данные таблицы в TableData[]
-			//System.Windows.Forms.MessageBox.Show("on closed");
-			var tableForm = (TableForm)sender;
-			UpdateTableData(TableData.Get(tableForm));
-		}*/
-
 		public void UpdateTableData(TableData tableData)
 		{
 			var index = TableDatas.FindIndex(x => x.Descriptor.Name == tableData.Descriptor.Name);
+			tableData.Rows.RemoveAt(tableData.Rows.Count - 1);
 			TableDatas[index] = tableData;
+		}
+
+		public ProjectData Update()
+		{
+			foreach (TableForm form in _form.MdiChildren)
+			{
+				UpdateTableData(TableData.Get(form));
+			}
+
+			return new ProjectData(TableDatas);
+		}
+
+		public void RenameTable(string oldName, string newName)
+		{
+			TableDatas.ToList()
+				.Where(x => x.Descriptor.Name == oldName)
+				.ElementAt(0).Descriptor.Name = newName;
+
+			_form.MdiChildren.ToList()
+				.Where(x => x.Text == oldName)
+				.ElementAt(0).Text = newName;
+
+			_form.FLPanel_Tables.Controls.Cast<TableButton>()
+				.Where(x => x.Text == oldName)
+				.ElementAt(0).Text = newName;
+		}
+
+		public void DeleteTable(string tableName)
+		{
+			// from form (mdi childs)
+			_form.MdiChildren.ToList()
+				.Where(x => x.Text == tableName)
+				.ElementAt(0)
+				.Close();
+
+			// from tableButtons panel
+			int index = _form.FLPanel_Tables.Controls.Cast<TableButton>().ToList().FindIndex(x => x.Text == tableName);
+			_form.FLPanel_Tables.Controls.RemoveAt(index);
+
+			// from model
+			index = TableDatas.FindIndex(x => x.Descriptor.Name == tableName);
+			TableDatas.RemoveAt(index);
 		}
 	}
 }

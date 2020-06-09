@@ -289,7 +289,10 @@ namespace TPCourse.Source.Types
 			int precision = (int)c.NUD_Precision.Value;
 			bool hasSeparator = c.RBtn_DigitGroupSeparator.Checked;
 
-			return new NumberFormat(precision, hasSeparator, ColumnConstants.DefaultCulture);
+			return new NumberFormat(
+				precision, 
+				hasSeparator, 
+				"");
 		}
 
 		private PercentFormat GetDataTypeFormat(PercentFormatUserControl c)
@@ -303,8 +306,7 @@ namespace TPCourse.Source.Types
 		{
 			int precision = (int)c.NUD_Precision.Value;
 			var sign = c.CmBox_Currency.Text;
-			CurrencyConstants.Sign_Culture_Dictionary.TryGetValue(sign, out string sCulture);
-			var culture = CultureInfo.GetCultureInfo(sCulture);
+			CurrencyConstants.Sign_Culture_Dictionary.TryGetValue(sign, out string culture);
 
 			return new CurrencyFormat(precision, culture);
 		}
@@ -414,7 +416,10 @@ namespace TPCourse.Source.Types
 			UpdateCulture(control);
 
 			var culture = Result.Value.Format.Culture;
-			Formatter.TryFormat(source, dataType, format, culture, out string sample);
+			Formatter.TryFormat(
+				source, dataType, format, 
+				CultureInfo.GetCultureInfo(ColumnConstants.DefaultCulture), 
+				out string sample);
 			Lbl_SampleValue.Text = sample;
 		}
 
@@ -423,8 +428,8 @@ namespace TPCourse.Source.Types
 			if (CmBox_ColumnDataType.SelectedIndex == (int)DataType.Currency)
 			{
 				var sign = (control as CurrencyFormatUserControl).CmBox_Currency.Text;
-				CurrencyConstants.Sign_Culture_Dictionary.TryGetValue(sign, out string sCulture);
-				Result.Value.Format.Culture = CultureInfo.GetCultureInfo(sCulture);
+				CurrencyConstants.Sign_Culture_Dictionary.TryGetValue(sign, out string culture);
+				Result.Value.Format.Culture = culture;
 			}
 		}
 

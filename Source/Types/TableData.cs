@@ -17,8 +17,11 @@ namespace TPCourse.Source.Table
 		public List<ColumnDescriptor> ColumnDescriptors { get; set; }
 		public List<List<string>> Rows { get; set; }
 
+		public TableData()
+		{ }
+
 		/*
-			@return Объект TableData
+			@return TableData
 			*/
 		public static TableData Get(TableForm form)
 		{
@@ -42,7 +45,7 @@ namespace TPCourse.Source.Table
 
 			tableData.Rows = rows;
 
-			return tableData;
+			return tableData; // TODO
 		}
 	}
 }

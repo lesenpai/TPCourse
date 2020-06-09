@@ -7,7 +7,7 @@ namespace TPCourse.Source.Table.Column.DataTypes.Percent
 	{
 		public int Precision;
 
-		public PercentFormat(int presicion, CultureInfo culture)
+		public PercentFormat(int presicion, string culture)
 			: base(culture)
 		{
 			Precision = presicion;

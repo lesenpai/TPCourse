@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using TPCourse.Source.Table.Column;
+using TPCourse.Source.Table.Column.DataTypes;
+using TPCourse.Source.Table.Column.DataTypes.Base;
 
 namespace TPCourse.Table
 {
@@ -22,7 +25,7 @@ namespace TPCourse.Table
 		{
 			ColumnDescriptors.Add(descriptor);
 			_table.Columns.Add(
-				"c" + descriptor.Index, descriptor.Name + '\n' 
+				descriptor.Name,/*"c" + descriptor.Index, */descriptor.Name + '\n' 
 				    + descriptor.DataType + '\n' 
 				    + descriptor.Format.ToString());
 		}
@@ -36,9 +39,33 @@ namespace TPCourse.Table
 				+ descriptor.Format.ToString();
 		}
 
+		public void UpdateColumnCells(ColumnDescriptor descriptor, int columnIndex)
+		{
+			// строка
+			for (int i = 0; i < _table.Rows.Count - 1; i++) // "_table.Rows.Count - 1" - игнорируем последнюю пустую строку
+			{
+				// ячейка
+				string oldValue = _table.Rows[i].Cells[columnIndex].Value as string;
+				string culture = descriptor.Format.Culture;
+
+				if(culture == "")
+				{
+					culture = ColumnConstants.DefaultCulture;
+				}
+
+				_table.Rows[i].Cells[columnIndex].Value = Formatter.TryFormat(
+					oldValue,
+					descriptor.DataType,
+					descriptor.Format.ToString(),
+					CultureInfo.GetCultureInfo(culture),
+					out string newValue);
+
+				_table.Rows[i].Cells[columnIndex].Value = newValue;
+			}
+		}
+
 		public void AddColumn(ColumnDescriptor columnProps)
 		{
-			columnProps.Index = (ColumnDescriptors.Count > 0) ? ColumnDescriptors.Max(p => p.Index) + 1 : 0;
 			AddColumn_(columnProps);
 		}
 	}

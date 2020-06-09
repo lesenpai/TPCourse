@@ -11,10 +11,10 @@ namespace TPCourse.Source.Types
 		{ 
 		}
 
-		public void Init(string tableName, EventHandler clickHandler)
+		public void Init(string tableName, MouseEventHandler clickHandler)
 		{
 			Text = tableName; // unique
-			Click += clickHandler;
+			MouseUp += clickHandler;
 		}
 	}
 }

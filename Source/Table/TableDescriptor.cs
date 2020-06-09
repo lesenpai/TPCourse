@@ -1,8 +1,11 @@
-﻿namespace TPCourse.Source.Table
+﻿using System;
+
+namespace TPCourse.Source.Table
 {
 	/*
 		Свойства таблицы.
 		*/
+	[Serializable]
 	public class TableDescriptor
 	{
 		public string Name { get; set; }

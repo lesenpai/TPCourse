@@ -11,7 +11,7 @@ namespace TPCourse.Source.Table.Column.DataTypes.Date
 		public DateYear Year;
 		public DateSeparator Separator;
 
-		public DateFormat(DateDay day, DateMonth month, DateYear year, DateSeparator separator, CultureInfo culture)
+		public DateFormat(DateDay day, DateMonth month, DateYear year, DateSeparator separator, string culture)
 			: base(culture)
 		{
 			Day = day;

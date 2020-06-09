@@ -4,6 +4,6 @@ namespace TPCourse.Source.Table.Column
 {
 	public class ColumnConstants
 	{
-		public static readonly CultureInfo DefaultCulture = CultureInfo.GetCultureInfo("ru-RU");
+		public static readonly string DefaultCulture = "ru-RU";
 	}
 }

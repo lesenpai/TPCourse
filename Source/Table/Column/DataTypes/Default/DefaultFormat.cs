@@ -5,7 +5,7 @@ namespace TPCourse.Source.Table.Column.DataTypes.Default
 {
 	public class DefaultFormat : DataTypeFormat
 	{
-		public DefaultFormat(CultureInfo culture)
+		public DefaultFormat(string culture)
 			: base(culture)
 		{
 		}
