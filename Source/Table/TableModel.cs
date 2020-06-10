@@ -25,9 +25,10 @@ namespace TPCourse.Table
 		{
 			ColumnDescriptors.Add(descriptor);
 			_table.Columns.Add(
-				descriptor.Name,/*"c" + descriptor.Index, */descriptor.Name + '\n' 
-				    + descriptor.DataType + '\n' 
-				    + descriptor.Format.ToString());
+				descriptor.Name,
+				  descriptor.Name + '\n' 
+			        + descriptor.DataType + '\n' 
+				+ descriptor.Format.ToString());
 		}
 
 		public void UpdateColumnDescriptor(ColumnDescriptor descriptor, int columnIndex)
