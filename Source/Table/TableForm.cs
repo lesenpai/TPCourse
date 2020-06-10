@@ -98,7 +98,7 @@ namespace TPCourse.Table
 
 		/*
 			@view Контекстное меню
-			@brief Редактирование свойств столбца.
+			@summary Редактирование свойств столбца.
 			*/
 		private void TSMItem_ColumnHeader__EditColumn_Click(object sender, EventArgs e)
 		{
