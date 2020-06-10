@@ -1,19 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
+using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TPCourse.Source.Types;
-using TPCourse.Table;
 
 namespace TPCourse.Source.Table
 {
-	// TODO MAYBE REMOVE 'IResult<TableDescriptor' - лишнее
-	public partial class AddTableDialog : Form, IResult<TableDescriptor>
+	public partial class AddTableDialog : Form
 	{
 		public Result<TableDescriptor> @Result { get; set; }
 		private MainModel _mainModel;

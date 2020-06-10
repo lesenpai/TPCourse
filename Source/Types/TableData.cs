@@ -30,14 +30,19 @@ namespace TPCourse.Source.Table
 
 			List<List<string>> rows = new List<List<string>>();
 
-			if (form.DGView_Table.Rows.Count > 0)
+			/*if (form.DGView_Table.Rows.Count > 0)
 			{
-				//form.DGView_Table.Rows.RemoveAt(form.DGView_Table.Rows.Count - 1); // игнорирование пустой строки в конце
-			}
+				form.DGView_Table.Rows.RemoveAt(form.DGView_Table.Rows.Count - 1); // игнорирование пустой строки в конце
+			}*/
 
-			foreach (DataGridViewRow row in form.DGView_Table.Rows)
+			DataGridView table = form.DGView_Table;
+
+			//foreach (DataGridViewRow row in form.DGView_Table.Rows)
+			for(int i = 0; i < table.Rows.Count - 1; i++) // "table.Rows.Count - 1" - игнорирование пустой строки в конце
 			{
 				List<string> cells = new List<string>();
+
+				DataGridViewRow row = table.Rows[i];
 
 				foreach(DataGridViewCell cell in row.Cells)
 				{

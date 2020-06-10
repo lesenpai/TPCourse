@@ -36,7 +36,9 @@ namespace TPCourse.Source
 		public void AddNewTable()
 		{
 			var dialog = new AddTableDialog();
-			dialog.Init(this, _form.View);
+			int tablesCount = TableDatas.Count;
+			dialog.Init(this, _view, GetRandomTableName());
+
 			dialog.ShowDialog();
 			var result = dialog.Result;
 
@@ -59,6 +61,19 @@ namespace TPCourse.Source
 			}
 		}
 
+		private string GetRandomTableName()
+		{
+			string tableName = "";
+
+			do
+			{
+				tableName = $"Таблица [{Guid.NewGuid().ToString().Substring(0, 8)}]";
+			}
+			while (TableDatas.Any(x => x.Descriptor.Name == tableName));
+
+			return tableName;
+		}
+
 		/*
 			Создание и открытие окна таблицы, TableData которой уже есть в MainModel
 			*/
@@ -77,12 +92,6 @@ namespace TPCourse.Source
 		public void UpdateTableData(TableData tableData)
 		{
 			var index = TableDatas.FindIndex(x => x.Descriptor.Name == tableData.Descriptor.Name);
-			
-			if(tableData.Rows.Count > 0)
-			{
-				tableData.Rows.RemoveAt(tableData.Rows.Count - 1); // игнорирование пустой строки в кноце
-			}
-			
 			TableDatas[index] = tableData;
 		}
 

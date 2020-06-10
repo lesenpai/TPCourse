@@ -14,9 +14,10 @@ namespace TPCourse.Source
 		public void AddTableButton(string name)
 		{
 			var button = new TableButton();
-			button.Init(name, Form.TableBtn_X_MouseUp);
+			button.Init(name, Form.TableBtn_X_MouseUp, Form.TableBtn_X_MouseHover);
 				
 			Form.FLPanel_Tables.Controls.Add(button);
+			Form.FLPanel_Tables.SetFlowBreak(button, true);
 		}
 	}
 }

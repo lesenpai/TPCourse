@@ -79,7 +79,8 @@ namespace TPCourse.Source
 					// если окно таблицы, с которой связяна эта кнопка, НЕ открыто
 					if(!MdiChildren.Any(i => i.Text == button.Text)) 
 					{
-						Model.AddExistingTable(TableData.Get(tableForm));
+						var tableData = TableData.Get(tableForm);
+						Model.AddExistingTable(tableData);
 					}
 					else 
 					{
@@ -107,6 +108,15 @@ namespace TPCourse.Source
 			// сохранить данные таблицы в TableData[]
 			var tableForm = (TableForm)sender;
 			Model.UpdateTableData(TableData.Get(tableForm));
+		}
+
+		/*
+			Обработка положения курсора над кнопкой таблицы.
+			*/
+		public void TableBtn_X_MouseHover(object sender, EventArgs e)
+		{
+			var button = (Control)sender;
+			ToolTip_TableBtnX.Show(button.Text, button);
 		}
 
 		/*
@@ -197,7 +207,7 @@ namespace TPCourse.Source
 				FLPanel_Tables.Controls.Clear();
 				ProjectData data;
 
-				using(var reader = File.OpenText(OFDialog.FileName))
+				using (var reader = File.OpenText(fileName))
 				{
 					var serializer = new XmlSerializer(typeof(ProjectData));
 					data = (ProjectData)serializer.Deserialize(reader);
@@ -331,6 +341,21 @@ namespace TPCourse.Source
 					}
 				}
 			}
+		}
+
+		private void TSMI_Menu__View__TableFormsLayout__Cascade_Click(object sender, EventArgs e)
+		{
+			LayoutMdi(MdiLayout.Cascade);
+		}
+
+		private void TSMI_Menu__View__TableFormsLayout__Horizonal_Click(object sender, EventArgs e)
+		{
+			LayoutMdi(MdiLayout.TileHorizontal);
+		}
+
+		private void TSMI_Menu__View__TableFormsLayout__Vertical_Click(object sender, EventArgs e)
+		{
+			LayoutMdi(MdiLayout.TileVertical);
 		}
 	}
 }

@@ -53,28 +53,27 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Source\MainModel.cs" />
-    <Compile Include="Source\MainView.cs" />
+    <Compile Include="Source\View\MainView.cs" />
     <Compile Include="Source\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Source\Types\CellData.cs" />
     <Compile Include="Source\Types\ColumnData.cs" />
     <Compile Include="Source\Types\ProjectData.cs" />
-    <Compile Include="Source\Types\TableButton.cs">
+    <Compile Include="Source\View\TableButton.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Source\Types\TableData.cs" />
-    <Compile Include="Source\Types\IResult.cs" />
     <Compile Include="Source\Types\Result.cs" />
-    <Compile Include="Source\Types\AddTableDialog.cs">
+    <Compile Include="Source\Table\View\AddTableDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Source\Types\AddTableDialog.Designer.cs">
+    <Compile Include="Source\Table\View\AddTableDialog.Designer.cs">
       <DependentUpon>AddTableDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Source\Types\AddColumnDialog.cs">
+    <Compile Include="Source\Table\Column\View\AddColumnDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Source\Types\AddColumnDialog.Designer.cs">
+    <Compile Include="Source\Table\Column\View\AddColumnDialog.Designer.cs">
       <DependentUpon>AddColumnDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Source\Table\Column\ColumnConstants.cs" />
@@ -147,13 +146,7 @@
       <DependentUpon>TableForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Source\Table\TableModel.cs" />
-    <Compile Include="Source\Table\TableView.cs" />
-    <Compile Include="Source\Types\DialogForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Source\Types\DialogForm.Designer.cs">
-      <DependentUpon>DialogForm.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Source\Table\View\TableView.cs" />
     <Compile Include="Source\Types\NameCodePair.cs" />
     <Compile Include="Source\Utils.cs" />
     <EmbeddedResource Include="Source\MainForm.resx">
@@ -168,7 +161,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Source\Types\AddColumnDialog.resx">
+    <EmbeddedResource Include="Source\Table\Column\View\AddColumnDialog.resx">
       <DependentUpon>AddColumnDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\Table\Column\DataTypes\Currency\CurrencyFormatUserControl.resx">
@@ -192,7 +185,7 @@
     <EmbeddedResource Include="Source\Table\TableForm.resx">
       <DependentUpon>TableForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Source\Types\AddTableDialog.resx">
+    <EmbeddedResource Include="Source\Table\View\AddTableDialog.resx">
       <DependentUpon>AddTableDialog.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">

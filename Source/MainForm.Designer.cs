@@ -35,13 +35,18 @@
 			this.TSMI_Menu_File_Save = new System.Windows.Forms.ToolStripMenuItem();
 			this.TSMI_Menu_File_SaveAs = new System.Windows.Forms.ToolStripMenuItem();
 			this.TSMI_Menu__AddTable = new System.Windows.Forms.ToolStripMenuItem();
-			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+			this.TSMI_Menu__View = new System.Windows.Forms.ToolStripMenuItem();
+			this.TSMI_Menu__View__TableFormsLayout = new System.Windows.Forms.ToolStripMenuItem();
+			this.TSMI_Menu__View__TableFormsLayout__Cascade = new System.Windows.Forms.ToolStripMenuItem();
+			this.TSMI_Menu__View__TableFormsLayout__Horizonal = new System.Windows.Forms.ToolStripMenuItem();
+			this.TSMI_Menu__View__TableFormsLayout__Vertical = new System.Windows.Forms.ToolStripMenuItem();
 			this.FLPanel_Tables = new System.Windows.Forms.FlowLayoutPanel();
 			this.CtxMS_TableBtnX = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.TSMI_TableBtnX__Rename = new System.Windows.Forms.ToolStripMenuItem();
 			this.TSMI_TableBtnX__Delete = new System.Windows.Forms.ToolStripMenuItem();
 			this.SFDialog = new System.Windows.Forms.SaveFileDialog();
 			this.OFDialog = new System.Windows.Forms.OpenFileDialog();
+			this.ToolTip_TableBtnX = new System.Windows.Forms.ToolTip(this.components);
 			this.MS_Menu.SuspendLayout();
 			this.CtxMS_TableBtnX.SuspendLayout();
 			this.SuspendLayout();
@@ -50,10 +55,11 @@
 			// 
 			this.MS_Menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.TSMI_Menu__FIle,
-            this.TSMI_Menu__AddTable});
+            this.TSMI_Menu__AddTable,
+            this.TSMI_Menu__View});
 			this.MS_Menu.Location = new System.Drawing.Point(0, 0);
 			this.MS_Menu.Name = "MS_Menu";
-			this.MS_Menu.Size = new System.Drawing.Size(466, 24);
+			this.MS_Menu.Size = new System.Drawing.Size(656, 24);
 			this.MS_Menu.TabIndex = 1;
 			// 
 			// TSMI_Menu__FIle
@@ -94,25 +100,53 @@
 			this.TSMI_Menu__AddTable.Text = "Добавить таблицу";
 			this.TSMI_Menu__AddTable.Click += new System.EventHandler(this.TSMI_Menu__AddTable_Click);
 			// 
-			// flowLayoutPanel1
+			// TSMI_Menu__View
 			// 
-			this.flowLayoutPanel1.AutoSize = true;
-			this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 378);
-			this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-			this.flowLayoutPanel1.Size = new System.Drawing.Size(466, 0);
-			this.flowLayoutPanel1.TabIndex = 4;
-			this.flowLayoutPanel1.WrapContents = false;
+			this.TSMI_Menu__View.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.TSMI_Menu__View__TableFormsLayout});
+			this.TSMI_Menu__View.Name = "TSMI_Menu__View";
+			this.TSMI_Menu__View.Size = new System.Drawing.Size(39, 20);
+			this.TSMI_Menu__View.Text = "Вид";
+			// 
+			// TSMI_Menu__View__TableFormsLayout
+			// 
+			this.TSMI_Menu__View__TableFormsLayout.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.TSMI_Menu__View__TableFormsLayout__Cascade,
+            this.TSMI_Menu__View__TableFormsLayout__Horizonal,
+            this.TSMI_Menu__View__TableFormsLayout__Vertical});
+			this.TSMI_Menu__View__TableFormsLayout.Name = "TSMI_Menu__View__TableFormsLayout";
+			this.TSMI_Menu__View__TableFormsLayout.Size = new System.Drawing.Size(215, 22);
+			this.TSMI_Menu__View__TableFormsLayout.Text = "Компоновка окон таблиц";
+			// 
+			// TSMI_Menu__View__TableFormsLayout__Cascade
+			// 
+			this.TSMI_Menu__View__TableFormsLayout__Cascade.Name = "TSMI_Menu__View__TableFormsLayout__Cascade";
+			this.TSMI_Menu__View__TableFormsLayout__Cascade.Size = new System.Drawing.Size(158, 22);
+			this.TSMI_Menu__View__TableFormsLayout__Cascade.Text = "Каскад";
+			this.TSMI_Menu__View__TableFormsLayout__Cascade.Click += new System.EventHandler(this.TSMI_Menu__View__TableFormsLayout__Cascade_Click);
+			// 
+			// TSMI_Menu__View__TableFormsLayout__Horizonal
+			// 
+			this.TSMI_Menu__View__TableFormsLayout__Horizonal.Name = "TSMI_Menu__View__TableFormsLayout__Horizonal";
+			this.TSMI_Menu__View__TableFormsLayout__Horizonal.Size = new System.Drawing.Size(158, 22);
+			this.TSMI_Menu__View__TableFormsLayout__Horizonal.Text = "Горизонтально";
+			this.TSMI_Menu__View__TableFormsLayout__Horizonal.Click += new System.EventHandler(this.TSMI_Menu__View__TableFormsLayout__Horizonal_Click);
+			// 
+			// TSMI_Menu__View__TableFormsLayout__Vertical
+			// 
+			this.TSMI_Menu__View__TableFormsLayout__Vertical.Name = "TSMI_Menu__View__TableFormsLayout__Vertical";
+			this.TSMI_Menu__View__TableFormsLayout__Vertical.Size = new System.Drawing.Size(158, 22);
+			this.TSMI_Menu__View__TableFormsLayout__Vertical.Text = "Вертикально";
+			this.TSMI_Menu__View__TableFormsLayout__Vertical.Click += new System.EventHandler(this.TSMI_Menu__View__TableFormsLayout__Vertical_Click);
 			// 
 			// FLPanel_Tables
 			// 
 			this.FLPanel_Tables.AutoScroll = true;
-			this.FLPanel_Tables.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.FLPanel_Tables.Location = new System.Drawing.Point(0, 325);
+			this.FLPanel_Tables.Dock = System.Windows.Forms.DockStyle.Left;
+			this.FLPanel_Tables.Location = new System.Drawing.Point(0, 24);
 			this.FLPanel_Tables.Name = "FLPanel_Tables";
-			this.FLPanel_Tables.Size = new System.Drawing.Size(466, 53);
+			this.FLPanel_Tables.Size = new System.Drawing.Size(138, 354);
 			this.FLPanel_Tables.TabIndex = 6;
-			this.FLPanel_Tables.WrapContents = false;
 			// 
 			// CtxMS_TableBtnX
 			// 
@@ -150,9 +184,8 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(466, 378);
+			this.ClientSize = new System.Drawing.Size(656, 378);
 			this.Controls.Add(this.FLPanel_Tables);
-			this.Controls.Add(this.flowLayoutPanel1);
 			this.Controls.Add(this.MS_Menu);
 			this.DoubleBuffered = true;
 			this.IsMdiContainer = true;
@@ -176,13 +209,18 @@
 		private System.Windows.Forms.ToolStripMenuItem TSMI_Menu_File_Open;
 		private System.Windows.Forms.ToolStripMenuItem TSMI_Menu_File_Save;
 		private System.Windows.Forms.ToolStripMenuItem TSMI_Menu_File_SaveAs;
-		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
 		public System.Windows.Forms.FlowLayoutPanel FLPanel_Tables;
 		private System.Windows.Forms.ContextMenuStrip CtxMS_TableBtnX;
 		private System.Windows.Forms.ToolStripMenuItem TSMI_TableBtnX__Rename;
 		private System.Windows.Forms.ToolStripMenuItem TSMI_TableBtnX__Delete;
 		private System.Windows.Forms.SaveFileDialog SFDialog;
 		private System.Windows.Forms.OpenFileDialog OFDialog;
+		private System.Windows.Forms.ToolStripMenuItem TSMI_Menu__View;
+		private System.Windows.Forms.ToolStripMenuItem TSMI_Menu__View__TableFormsLayout;
+		private System.Windows.Forms.ToolStripMenuItem TSMI_Menu__View__TableFormsLayout__Cascade;
+		private System.Windows.Forms.ToolStripMenuItem TSMI_Menu__View__TableFormsLayout__Horizonal;
+		private System.Windows.Forms.ToolStripMenuItem TSMI_Menu__View__TableFormsLayout__Vertical;
+		private System.Windows.Forms.ToolTip ToolTip_TableBtnX;
 	}
 }
 

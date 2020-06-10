@@ -12,9 +12,9 @@ namespace TPCourse.Source.Table.Column.DataTypes
 		*/
 	public class Formatter
 	{
-		private static bool TryFormatDataType<T> (
+		private static bool TryFormatDataType<T>(
 			string source, string format, CultureInfo culture, out string result,
-			Func<string, CultureInfo, (bool, T)> parser) 
+			Func<string, CultureInfo, (bool, T)> parser)
 
 			where T : IFormattable
 		{
@@ -25,7 +25,7 @@ namespace TPCourse.Source.Table.Column.DataTypes
 
 		public static bool TryFormat(string source, DataType dataType, string format, CultureInfo culture, out string result)
 		{
-			switch(dataType)
+			switch (dataType)
 			{
 				case DataType.Number:
 					return TryFormatDataType(source, format, culture, out result, TryParseNumber);
@@ -33,7 +33,7 @@ namespace TPCourse.Source.Table.Column.DataTypes
 				case DataType.Percent:
 					return TryFormatDataType(source, format, culture, out result, TryParsePercent);
 
-				case DataType.Currency: 
+				case DataType.Currency:
 					return TryFormatDataType(source, format, culture, out result, TryParseCurrency);
 
 				case DataType.Date:
@@ -41,7 +41,7 @@ namespace TPCourse.Source.Table.Column.DataTypes
 
 				case DataType.Duration:
 					return TryFormatDataType(source, format, culture, out result, TryParseDuration);
-				
+
 				default:
 					result = "";
 					return false;
