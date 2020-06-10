@@ -37,9 +37,9 @@ namespace TPCourse.Table
 			ModelChanged += modelChangedHandler;
 		}
 
-		public void Init(TableData tableData, FormClosedEventHandler closedHandler, EventHandler modelChangedHandler)
+		public void Init(TableData tableData, FormClosedEventHandler formClosedHandler, EventHandler modelChangedHandler)
 		{
-			Init(tableData.Descriptor, closedHandler, modelChangedHandler);
+			Init(tableData.Descriptor, formClosedHandler, modelChangedHandler);
 
 			var columnDescriptors = tableData.ColumnDescriptors;
 			Model.ColumnDescriptors = columnDescriptors;
@@ -48,7 +48,7 @@ namespace TPCourse.Table
 			{
 				DGView_Table.Columns.Add(
 					desc.Name, 
-					desc.Name + "\n"
+					  desc.Name + "\n"
 					+ desc.DataType + "\n"
 					+ desc.Format.ToString());
 			}
